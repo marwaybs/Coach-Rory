@@ -9,9 +9,9 @@
 
 <!-- Set the page to the width of the device and set the zoon level -->
 <meta name="viewport" content="width = device-width, initial-scale = 1">
-<title>Bootstrap Tutorial</title>
+<title>AI</title>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
 .jumbotron{
     background-color:#2E2D88;
@@ -31,9 +31,26 @@
 
 </head>
 <body>
-  <container>
-    <h1>Hello world</h1>
-    <p> I’m hosted with Github Pages. </p>
+  <div class = "container">
+    <h1>AI-Anna</h1>
+    <h2>Messages</h2>
+    <ul id = 'list' class="list-group">
+      <li class="list-group-item active">First item</li>
+      <li class="list-group-item">Second item</li>
+      <li class="list-group-item">Third item</li>
+    </ul>
+    <div class="input-group input-group-sm">
+      <input type = "text" id = 'userMessage' class = "form-control" placeholder="Whats on your mind?">
+      <span class = "input-group-btn">
+        <button class = "btn btn-btn-default" value ='add to list' id = 'add' >Enter</button>
   </container>
+  <script type= "text/javascript">
+  $("document").ready(function(){})
+
+
+
+  });
+  </script>
 </body>
+
 </html>

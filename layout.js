@@ -63,15 +63,11 @@
     node.innerHTML = "...";
     if ($('#result').children().length > 10){
       console.log("here")
-      $('#result').find('.chat:lt(4)').remove();
+      $('#result').find('.chat:lt(2)').remove();
     }
     resultDiv.appendChild(node);
     return node;
   }
-
-  //if ($('#result').children().length > 10){
-  //  console.log("here")
-  //  $('#result').find('flow-text:lt(4)').remove();
 
   function setResponseOnNode(response, node) {
     node.innerHTML = response ? response : "[empty response]";

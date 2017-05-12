@@ -52,18 +52,26 @@
 
   function createQueryNode(query) {
     var node = document.createElement('div');
-    node.className = "clearfix left-align left card-panel green accent-1";
+    node.className = "chat clearfix left-align left card-panel green accent-1";
     node.innerHTML = query;
     resultDiv.appendChild(node);
   }
 
   function createResponseNode() {
     var node = document.createElement('div');
-    node.className = "clearfix right-align right card-panel blue-text text-darken-2 hoverable";
+    node.className = "chat clearfix right-align right card-panel blue-text text-darken-2 hoverable";
     node.innerHTML = "...";
+    if ($('#result').children().length > 10){
+      console.log("here")
+      $('#result').find('.chat:lt(4)').remove();
+    }
     resultDiv.appendChild(node);
     return node;
   }
+
+  //if ($('#result').children().length > 10){
+  //  console.log("here")
+  //  $('#result').find('flow-text:lt(4)').remove();
 
   function setResponseOnNode(response, node) {
     node.innerHTML = response ? response : "[empty response]";

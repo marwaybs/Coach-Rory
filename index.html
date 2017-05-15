@@ -6,29 +6,29 @@
     <title>Therapist AI</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     <script src="ApiAi.js"></script>
-    <script src="voice.js"></script>
-    <script src="demoFunctions.js"></script>
+    <script src="ApiAiFunc.js"></script>
+    <script src="script.js"></script>
 
-    <style>
-        #placeholder {
-            text-align: center;
-            margin-top: 1.5em;
-        }
-        #main-wrapper {
-            display: none;
-        }
-        .clearfix {
-            clear: both;
-        }
-    </style>
 </head>
+
+<div id="popDiv" class="ontop">
+  <div border="1" id="popup">
+    <canvas></canvas>
+    <script src="blsAnimation.js"></script>
+  </div>
+</div>
+<CENTER>
+  <a href="#" onClick="pop('popDiv')">Click for BLS</a>
+</CENTER>
+
 <body>
 <div class="container">
     <div class="row">
-        <h5>Configure demo:</h5>
+        <h5>Ai Therapist: Rory</h5>
     </div>
     <div class="row">
         <div class="input-field col s10">

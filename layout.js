@@ -61,8 +61,7 @@
     var node = document.createElement('div');
     node.className = "chat clearfix right-align right card-panel blue-text text-darken-2 hoverable";
     node.innerHTML = "...";
-    if ($('#result').children().length > 10){
-      console.log("here")
+    if ($('#result').children().length > 8){
       $('#result').find('.chat:lt(2)').remove();
     }
     resultDiv.appendChild(node);
@@ -94,6 +93,14 @@
   function setResponseJSON(response) {
     var node = document.getElementById("jsonResponse");
     node.innerHTML = JSON.stringify(response, null, 2);
+    var context;
+    for (context = 0; context < response.result.contexts.length; context++){
+      if (response.result.contexts[context].name == "bls"){
+        console.log("BLS Activate!");
+      }
+    }
+
+    console.log(response.result.contexts)
   }
 
   function sendRequest() {

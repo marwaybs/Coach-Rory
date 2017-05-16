@@ -33,6 +33,8 @@ body{
     color:white;
 }
 /* Adds borders for tabs */
+
+
 .tab-content {
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;

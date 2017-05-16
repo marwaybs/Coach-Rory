@@ -2,7 +2,6 @@ var canvas = document.querySelector('canvas');
 canvas.width= window.innerWidth;
 canvas.height=window.innerHeight;
 
-
 var c = canvas.getContext('2d');
 
 function Circle(x, y, dx, dy,radius) {
@@ -12,35 +11,28 @@ function Circle(x, y, dx, dy,radius) {
   this.dy = dy;
   this.radius = radius
 
-
   this.draw = function() {
     c.beginPath();
-    c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-    c.strokeStyle = "black";
+    c.arc(this.x, window.innerHeight/2, this.radius, 0, Math.PI * 2, false);
+    c.strokeStyle = "white";
+    c.fillStyle = "white";
+    c.fill();
     c.stroke();
-
   }
 
   this.update = function(){
-
     if (this.x + this.radius > innerWidth || this.x - this.radius < 0) {
       this.dx = -this.dx;
     }
-
     if (this.y + this.radius > innerHeight || this.y - this.radius < 0) {
       this.dy = -this.dy;
     }
-
     this.x+=this.dx;
-    this.y+=this.dy;
-
     this.draw()
   }
-
 }
 
-var circle = new Circle(200,200,3, 3, 30);
-
+var circle = new Circle(200,200,10, 3, 30);
 
 function animate() {
   requestAnimationFrame(animate);

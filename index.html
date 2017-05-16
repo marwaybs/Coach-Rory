@@ -1,72 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+  <!-- If IE use the latest rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Therapist AI</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-    <script src="ApiAi.js"></script>
-    <script src="ApiAiFunc.js"></script>
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+    <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
+    <script type='text/javascript' src="script.js"></script>
 
 </head>
-
+<body>
 <div id="popDiv" class="ontop">
   <div border="1" id="popup">
     <canvas></canvas>
     <script src="blsAnimation.js"></script>
   </div>
 </div>
-<CENTER>
+<div class = "container">
   <a href="#" onClick="pop('popDiv')">Click for BLS</a>
-</CENTER>
+<div class = "jumbotron" style="background:#2C8E9B s">
+  <h3>Therapist Rory</h3>
 
-<body>
-<div class="container">
-    <div class="row">
-        <h5>Ai Therapist: Rory</h5>
-    </div>
-    <div class="row">
-        <div class="input-field col s10">
-            <input id="access_token" type="text" >
-            <label for="access_token">Access token</label>
-        </div>
-        <div class="col s2 input-field">
-            <a class="waves-effect waves-light btn" id="set_access_token">Set</a>
-        </div>
-    </div>
-</div>
-<div id="placeholder">
-    <h5>Please, fill access token before start</h5>
-    <h5>be59ea6cae5a4df990e96569177e9053<h5>
-</div>
-<div id="main-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col s5">
-                <div class="input-field">
-                    <input placeholder="Hey, ask me something..." id="q" type="text" >
-                </div>
-                <div id="result">
-                    <!--div class="left-align flow-text">test</div>
-                    <div class="right-align flow-text">one more test</div-->
-                </div>
-            </div>
-            <div class="col s2"></div>
-            <div class="col s5">
-            <!--h5>Request payload:</h5>
-            <pre id="jsonRequest"></pre-->
-            <h5>Response payload:</h5>
-            <pre id="jsonResponse"></pre>
-            </div>
-        </div>
-    </div>
-</div>
-<script defer src="layout.js"></script>
 
-</body>
-</html>
+
+    <p>Would you like visuals?</p>
+    <div class="btn-group" id = "visuals" data-toggle="buttons">
+      <label class="btn btn-default active">
+        <input type="radio" class="toggle" value='true'/>Yes
+      </label>
+      <label class="btn btn-default">
+         <input type="radio" class="toggle" value='false'/>No
+      </label>
+    </div>
+    <p>How long would you like the session to be?</p>
+    <div class="btn-group" id = "length" data-toggle="buttons">
+      <label class="btn btn-default active">
+        <input type="radio" class="toggle" value='5' />5 Minutes
+      </label>
+      <label class="btn btn-default">
+         <input type="radio" class="toggle" value='10'/>10 Minutes
+      </label>
+      <label class="btn btn-default">
+         <input type="radio" class="toggle" value='15' />15 Minutes
+      </label>
+    </div>
+    <p>How fast would you like the session to go?</p>
+    <div class="btn-group" id = "speed" data-toggle="buttons">
+      <label class="btn btn-default active">
+        <input type="radio" class="toggle" value='slow'/>Slow
+      </label>
+      <label class="btn btn-default">
+         <input type="radio" class="toggle" value='medium'/>Medium
+      </label>
+      <label class="btn btn-default">
+         <input type="radio" class="toggle" value='fast'/>Fast
+      </label>
+    </div>
+    <div class = "container">
+      <button type="button" id = "startSession" class = btn btn-default">Start Session</button>
+    </div>
+  </div>
+  </body>
+  </html>

@@ -56,3 +56,7 @@ body{
 .button-wrapper .btn {
     margin-bottom:5px;
   }
+
+.hidden{
+  opacity: 0;
+}

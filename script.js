@@ -18,16 +18,26 @@ $(document).ready(function(){
 });
 
 
+// //To exit BLS when pressing esc button
+// document.onkeydown = function(evt) {
+//   evt = evt || window.event;
+//   if (evt.keyCode == 27) {
+//     $("#enterFullScreen").removeClass("hidden");
+//   }
+// };
 
-//To exit BLS when pressing esc button
-document.onkeydown = function(evt) {
-  evt = evt || window.event;
-  if (evt.keyCode == 27) {
-    hide('popDiv');
+$(document).ready(function(){
+  if (screenfull.enabled) {
+  	screenfull.onchange(() => {
+  		console.log('Am I fullscreen?', screenfull.isFullscreen ? 'Yes' : 'No');
+      if (screenfull.isFullscreen){
+        $("#enterFullScreen").addClass("hidden");
+      }else{
+          $("#enterFullScreen").removeClass("hidden");
+      }
+  	});
   }
-};
-
-
+});
 
 
 //submit button, collects picked parameters

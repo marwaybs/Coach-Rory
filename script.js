@@ -9,7 +9,6 @@ function hide(div) {
 
 //To make BLS fullscreen
 const target = $('#target')[0]; // Get DOM element from jQuery collection
-
 $(document).ready(function(){
   $("#enterFullScreen").click(function(){
 	if (screenfull.enabled) {

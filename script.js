@@ -6,6 +6,20 @@ function hide(div) {
   document.getElementById(div).style.display = 'none';
 }
 
+
+//To make BLS fullscreen
+const target = $('#target')[0]; // Get DOM element from jQuery collection
+
+$(document).ready(function(){
+  $("#enterFullScreen").click(function(){
+	if (screenfull.enabled) {
+		screenfull.request(target);
+	 }
+ });
+});
+
+
+
 //To exit BLS when pressing esc button
 document.onkeydown = function(evt) {
   evt = evt || window.event;
@@ -29,6 +43,7 @@ $(document).ready(function(){
     sessionSpeed = ($('#speed label.active input').val());
 
     console.log(sessionLength, sessionSpeed);
+    location.href = "session.html";
 
   })
 })

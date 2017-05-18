@@ -55,6 +55,14 @@ $(document).ready(function(){
   })
 })
 
+$(document).ready(function(){
+  $("#setCookie").click(function(){
+    document.cookie = "cat = monkey";
+    console.log(document.cookie);
+  })
+})
+
+
 $('.trigger').on('click', function(){
   $(this).toggleClass('clicked');
 });

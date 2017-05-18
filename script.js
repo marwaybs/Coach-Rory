@@ -102,6 +102,7 @@ $(document).ready(function(){
     case "exc90":
       audioQueue = ["/Part One/part1segmentx.mp3","/Part 3/Initial/initialsegx.mp3"];
   }
+  //cycles through queue of audio until finsished using an event listner to start the next audio when one finishs
   audioQueue = ['audio/Part One/ding.mp3','audio/Part One/ding.mp3','audio/Part One/ding.mp3'];
   var currentAudio = 0;
   var audioElement = document.createElement('audio');
@@ -114,5 +115,4 @@ $(document).ready(function(){
     }
     currentAudio++
   });
-
 });

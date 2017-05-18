@@ -1,0 +1,30 @@
+.btn{
+     font-family: "Arial Bold", Gadget, sans-serif;
+     font-style: normal;
+     font-size: 15px ! important; //to make fontsize bigger
+  }
+
+
+.hidden{
+  opacity: 0;
+}
+
+
+.circle {
+  height: 10vw;
+  width: 10vw;
+  background: #64B5F6;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-top: 40vh;
+  animation: moveLeftRight 1s ease-in-out infinite alternate;
+}
+
+@keyframes moveLeftRight {
+  0% {
+    transform: translateX(-40vw);
+  }
+  100% {
+    transform: translateX(40vw);
+  }
+}

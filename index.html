@@ -20,14 +20,6 @@
 
 </head>
 <body>
-<div id="popDiv" class="ontop">
-  <div border="1" id="popup">
-    <canvas></canvas>
-    <script src="blsAnimation.js"></script>
-  </div>
-</div>
-<div class = "container">
-  <a href="#" onClick="pop('popDiv')">Click for BLS</a>
 
 <div class = "jumbotron" style="background:#2C8E9B s">
   <h3>Coach Rory</h3>
@@ -46,7 +38,8 @@
       <label class="btn btn-default">
          <input type="radio" class="toggle" value='easy30' />30 Minutes
       </label>
-    <p>Excercise Mode</p>
+
+    <p class = "spaceAbove">Excercise Mode</p>
       <label class="btn btn-default">
         <input type="radio" class="toggle" value='exc15' />15 Minutes
       </label>
@@ -59,11 +52,9 @@
       <label class="btn btn-default">
          <input type="radio" class="toggle" value='exc90' />90 Minutes
       </label>
-    </div>
-    <p>Creative Mode</p>
+    <p class = "spaceAbove">Creative Mode</p>
     <div class = "container">
       <button type="button" id = "startSession" class = "btn btn-default">Start Session</button>
-      <button type="button" id = "play" class = "btn btn-default">Play</button>
     </div>
   </div>
   </body>

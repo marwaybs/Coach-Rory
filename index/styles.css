@@ -1,6 +1,21 @@
 html{
   background-color: black;
+  opacity:0;
+  -webkit-animation: fadeIn 2s forwards;
 }
+
+@keyframes fadeIn{
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+
 
 #enterFullScreen{
      font-family: "Arial Bold", Gadget, sans-serif;
@@ -8,12 +23,12 @@ html{
      font-size: 15px ! important; //to make fontsize bigger
   }
 
-
+/*to hide elements*/
 .hidden{
   opacity: 0;
 }
 
-
+/*circle for bls*/
 .circle {
   height: 10vw;
   width: 10vw;
@@ -23,12 +38,13 @@ html{
   margin-top: 40vh;
   animation-name: moveCenterLeft, moveLeftRight, moveLeftCenter;
   animation-duration: 1000ms, 2000ms, 1000ms;
-  animation-delay: 0ms, 1000ms, 5000ms; /* add this */
+  animation-delay: 700ms, 1700ms, 5700ms; /* add this */
   animation-timing-function: ease-in-out, ease-in-out, ease-in-out;
   animation-iteration-count: 1, 2, 1;
   animation-direction: normal, alternate, normal;
 }
 
+/*animations for bls*/
 @keyframes moveCenterLeft {
   0% {
     transform: translateX(0);
@@ -38,6 +54,7 @@ html{
   }
 }
 
+/*iterations must be in multiples of 2*/
 @keyframes moveLeftRight {
   0% {
     transform: translateX(-40vw);

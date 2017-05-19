@@ -13,6 +13,15 @@ html{
   }
 }
 
+@keyframes fadeOut{
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 #enterFullScreen{
      font-family: "Arial Bold", Gadget, sans-serif;
      font-style: normal;
@@ -28,8 +37,6 @@ html{
 
 }
 
-
-
 /*to hide elements*/
 .hidden{
   opacity: 0;
@@ -43,12 +50,13 @@ html{
   border-radius: 50%;
   margin: 0 auto;
   margin-top: 40vh;
-  animation-name: moveCenterLeft, moveLeftRight, moveLeftCenter;
-  animation-duration: 1000ms, 2000ms, 1000ms;
-  animation-delay: 700ms, 1700ms, 5700ms; /* add this */
-  animation-timing-function: ease-in-out, ease-in-out, ease-in-out;
-  animation-iteration-count: 1, 2, 1;
-  animation-direction: normal, alternate, normal;
+  animation-name: moveCenterLeft, moveLeftRight, moveLeftCenter, fadeOut;
+  animation-duration: 1000ms, 2000ms, 1000ms, 1000ms;
+  animation-delay: 700ms, 1700ms, 5700ms,7000ms; /* add this */
+  animation-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+  animation-iteration-count: 1, 2, 1, 1;
+  animation-direction: normal, alternate, normal, normal;
+  animation-fill-mode: none, none, none, forwards;
 }
 
 /*animations for bls*/

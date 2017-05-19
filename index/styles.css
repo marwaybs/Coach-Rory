@@ -1,4 +1,8 @@
-.btn{
+html{
+  background-color: black;
+}
+
+#enterFullScreen{
      font-family: "Arial Bold", Gadget, sans-serif;
      font-style: normal;
      font-size: 15px ! important; //to make fontsize bigger
@@ -13,7 +17,7 @@
 .circle {
   height: 10vw;
   width: 10vw;
-  background: #64B5F6;
+  background: white;
   border-radius: 50%;
   margin: 0 auto;
   margin-top: 40vh;

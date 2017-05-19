@@ -13,15 +13,22 @@ html{
   }
 }
 
-
-
-
-
 #enterFullScreen{
      font-family: "Arial Bold", Gadget, sans-serif;
      font-style: normal;
      font-size: 15px ! important; //to make fontsize bigger
   }
+
+#sessionOver {
+  -webkit-animation: fadeIn 1s forwards 7s;
+}
+
+.visQuestion {
+  -webkit-animation: fadeIn 1s forwards 8000ms;
+
+}
+
+
 
 /*to hide elements*/
 .hidden{

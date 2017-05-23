@@ -66,21 +66,18 @@ $(document).ready(function(){
       audioQueue = ["/Part One/part1segmentx.mp3","/Part 3/Initial/initialsegx.mp3"];
   }
   //cycles through queue of audio until finsished using an event listener to start the next audio when one finishs
-  audioQueue = ['audio/Part One/ding.mp3','audio/Part One/ding.mp3','audio/Part One/ding.mp3'];
 
-  //calculating time for each animation
-  totalTime = 40;
+  audioQueue = ['audio/sample.mp3','audio/Part One/ding.mp3','audio/Part One/ding.mp3']; //placeholder queue
+
+  //calculating time for first audio
+  totalTime = 10; //placeholder time
   sideToSideIteration = (Math.ceil((totalTime-3)/4));
   sideToSideTime = 2*sideToSideIteration
   sideToSideDelay = 2 + sideToSideTime;
   fadeOutDelay = sideToSideDelay + 2
   console.log(sideToSideIteration, sideToSideTime, sideToSideDelay,fadeOutDelay);
-  // $("#blsAnimation").css("animation-iteration-count:", "1, sideToSideIteration, 1, 1");
-  // $("#blsAnimation").css("animation-duration", "1s, 2s, sideToSideTime, 1s");
-  // $("#blsAnimation").css("animation-delay", "1s, 1s, sideToSideDelay, fadeOutDelay");
 
-  //  animation-name: moveCenterLeft, moveLeftRight, moveLeftCenter, fadeOut;
-
+  //Apply class before changing the class
   $('#bls').addClass('blsAnimation');
   iterString = "1, "+sideToSideIteration+", 1, 1"
   delayString = "1s, 2s, "+sideToSideDelay+"s, "+fadeOutDelay+"s";
@@ -95,10 +92,14 @@ $(document).ready(function(){
   console.log(audioElement.duration);
   audioElement.addEventListener("ended", function() {
     console.log("audio ended")
-    if (currentAudio < audioQueue.length){
-      audioElement.play();
+    if (currentAudio < audioQueue.length - 1){
+      currentAudio++
+      audioElement.setAttribute('src', audioQueue[currentAudio]);
+      $("#afterBLS").addClass("fadeIn");
+      
+      //Duration is returning NaN for some reason.... How to time animations then?
       console.log(audioElement.duration);
+      audioElement.play();
     }
-    currentAudio++
   });
 });

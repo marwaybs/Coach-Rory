@@ -28,12 +28,23 @@ html{
      font-size: 15px ! important; //to make fontsize bigger
   }
 
+/*set at appropriate delay when everything is figured out*/
 #sessionOver {
-  -webkit-animation: fadeIn 1s forwards 7s;
+  -webkit-animation: fadeIn 1s forwards 40s;
 }
 
+.fadeIn{
+    -webkit-animation: fadeIn 1s forwards;
+}
+
+.fadeOut{
+  -webkit-animation: fadeOut 1s forwards;
+
+}
+
+/*set at appropriate delay when everything is figured out*/
 .visQuestion {
-  -webkit-animation: fadeIn 1s forwards 8000ms;
+  -webkit-animation: fadeIn 1s forwards 41s;
 
 }
 

@@ -95,11 +95,16 @@ $(document).ready(function(){
     if (currentAudio < audioQueue.length - 1){
       currentAudio++
       audioElement.setAttribute('src', audioQueue[currentAudio]);
+      $("#afterBLS").removeClass("fadeOut");
       $("#afterBLS").addClass("fadeIn");
-      
-      //Duration is returning NaN for some reason.... How to time animations then?
-      console.log(audioElement.duration);
-      audioElement.play();
+      $("#submitFeelings").click(function() {
+        console.log($("#SUD").val())
+        $("#afterBLS").removeClass("fadeIn");
+        $("#afterBLS").addClass("fadeOut");
+        //Duration is returning NaN for some reason.... How to time animations then?
+        console.log(audioElement.duration);
+        audioElement.play();
+      })
     }
   });
 });

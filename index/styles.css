@@ -50,11 +50,14 @@ html{
   border-radius: 50%;
   margin: 0 auto;
   margin-top: 40vh;
+}
+
+.blsAnimation {
   animation-name: moveCenterLeft, moveLeftRight, moveLeftCenter, fadeOut;
-  animation-duration: 1000ms, 2000ms, 1000ms, 1000ms;
-  animation-delay: 700ms, 1700ms, 5700ms,7000ms; /* add this */
+  /*animation-duration: 1000ms, 2000ms, 1000ms, 1000ms;
+  animation-delay: 1000ms, 2000ms, 6000ms,7000ms;*/
   animation-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
-  animation-iteration-count: 1, 2, 1, 1;
+  /*animation-iteration-count: 1, 2, 1, 1;*/
   animation-direction: normal, alternate, normal, normal;
   animation-fill-mode: none, none, none, forwards;
 }

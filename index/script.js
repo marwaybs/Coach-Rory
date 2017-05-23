@@ -67,8 +67,29 @@ $(document).ready(function(){
   }
   //cycles through queue of audio until finsished using an event listener to start the next audio when one finishs
   audioQueue = ['audio/Part One/ding.mp3','audio/Part One/ding.mp3','audio/Part One/ding.mp3'];
+
+  //calculating time for each animation
+  totalTime = 40;
+  sideToSideIteration = (Math.ceil((totalTime-3)/4));
+  sideToSideTime = 2*sideToSideIteration
+  sideToSideDelay = 2 + sideToSideTime;
+  fadeOutDelay = sideToSideDelay + 2
+  console.log(sideToSideIteration, sideToSideTime, sideToSideDelay,fadeOutDelay);
+  // $("#blsAnimation").css("animation-iteration-count:", "1, sideToSideIteration, 1, 1");
+  // $("#blsAnimation").css("animation-duration", "1s, 2s, sideToSideTime, 1s");
+  // $("#blsAnimation").css("animation-delay", "1s, 1s, sideToSideDelay, fadeOutDelay");
+
+  //  animation-name: moveCenterLeft, moveLeftRight, moveLeftCenter, fadeOut;
+
+  $('#bls').addClass('blsAnimation');
+  iterString = "1, "+sideToSideIteration+", 1, 1"
+  delayString = "1s, 2s, "+sideToSideDelay+"s, "+fadeOutDelay+"s";
+  console.log(iterString, delayString);
+  $(".blsAnimation").css({"animation-iteration-count": iterString,"animation-duration": "1s, 2s, 2s, 1s","animation-delay": delayString});
+
   var currentAudio = 0;
   var audioElement = document.createElement('audio');
+
   audioElement.setAttribute('src', audioQueue[currentAudio]);
   audioElement.play();
   console.log(audioElement.duration);

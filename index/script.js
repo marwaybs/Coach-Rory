@@ -20,11 +20,10 @@ $(document).ready(function(){
   if (screenfull.enabled) {
   	screenfull.onchange(() => {
       if (screenfull.isFullscreen){
-        $("#enterFullScreen").addClass("hidden");
-        $("#hideBLS").addClass("hidden");
+        console.log("entered full screen!")
+        $("#settings").addClass("hidden");
       }else{
-          $("#enterFullScreen").removeClass("hidden");
-          $("#hideBLS").removeClass("hidden");
+          $("#settings").removeClass("hidden");
       }
   	});
   }
@@ -32,10 +31,31 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $("#hideBLS").click(function(){
-      $("#bls").toggleClass("hidden");
+      $("#bls").toggleClass("hidden, notHidden");
     });
 
 });
+
+function updateAnimation(time) {
+  sideToSideIteration = (Math.ceil((time-3)/4));
+  sideToSideTime = 2*sideToSideIteration
+  sideToSideDelay = 2 + sideToSideTime;
+  fadeOutDelay = sideToSideDelay + 2
+  console.log(time);
+  //Apply class before changing the class
+  iterString = "1, 1, "+sideToSideIteration+", 1, 1"
+  delayString = "0s, 1s, 2s, "+sideToSideDelay+"s, "+fadeOutDelay+"s";
+  console.log(iterString, delayString);
+  $(".blsAnimation").css({"animation-iteration-count": iterString,"animation-duration": "1s, 1s, 2s, 2s, 1s","animation-delay": delayString});
+}
+
+function restartAnimation() {
+  $('#bls').removeClass('blsAnimation');
+
+  setTimeout(function(){
+    $('#bls').addClass('blsAnimation')
+  },1)
+};
 
 //Session set up
 $(document).ready(function(){
@@ -67,31 +87,19 @@ $(document).ready(function(){
   }
   //cycles through queue of audio until finsished using an event listener to start the next audio when one finishs
 
-  audioQueue = ['audio/sample.mp3','audio/Part One/ding.mp3','audio/Part One/ding.mp3']; //placeholder queue
+  audioQueue = ['audio/sample.mp3','audio/sample.mp3','audio/sample.mp3']; //placeholder queue
 
   //calculating time for first audio
   totalTime = 10; //placeholder time
-  sideToSideIteration = (Math.ceil((totalTime-3)/4));
-  sideToSideTime = 2*sideToSideIteration
-  sideToSideDelay = 2 + sideToSideTime;
-  fadeOutDelay = sideToSideDelay + 2
-  console.log(sideToSideIteration, sideToSideTime, sideToSideDelay,fadeOutDelay);
-
-  //Apply class before changing the class
   $('#bls').addClass('blsAnimation');
-  iterString = "1, "+sideToSideIteration+", 1, 1"
-  delayString = "1s, 2s, "+sideToSideDelay+"s, "+fadeOutDelay+"s";
-  console.log(iterString, delayString);
-  $(".blsAnimation").css({"animation-iteration-count": iterString,"animation-duration": "1s, 2s, 2s, 1s","animation-delay": delayString});
+  updateAnimation(10);
 
   var currentAudio = 0;
   var audioElement = document.createElement('audio');
 
   audioElement.setAttribute('src', audioQueue[currentAudio]);
   audioElement.play();
-  console.log(audioElement.duration);
   audioElement.addEventListener("ended", function() {
-    console.log("audio ended")
     if (currentAudio < audioQueue.length - 1){
       currentAudio++
       audioElement.setAttribute('src', audioQueue[currentAudio]);
@@ -102,9 +110,12 @@ $(document).ready(function(){
         $("#afterBLS").removeClass("fadeIn");
         $("#afterBLS").addClass("fadeOut");
         //Duration is returning NaN for some reason.... How to time animations then?
-        console.log(audioElement.duration);
+        // $('#bls').removeClass('blsAnimation');
+        updateAnimation(audioElement.duration)
+        restartAnimation();
         audioElement.play();
       })
     }
+    $("sessionOver").addClass("fadeIn");
   });
 });

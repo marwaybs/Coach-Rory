@@ -21,13 +21,13 @@
 </head>
 <body>
 
-  <div class = "container">
-    <button type="button" id = "enterFullScreen" class = "btn btn-default">Enter Full Screen</button>
-    <button type="button" id = "hideBLS" class = "btn btn-default">Hide Animation</button>
+  <div id = settings>
+    <button type="button" id = "enterFullScreen" >Enter Full Screen</button>
+    <button type="button" id = "hideBLS" >Hide Animation</button>
 
   </div>
 
-  <div class="circle" id = "bls"></div>
+  <div class="circle" id = "bls" class = "notHidden"></div>
 
   <div class = "hidden" id = "afterBLS">
     <p style = "color:white;">When you think about that picture, and the negative belief , what emotions do you feel now?</p>
@@ -36,8 +36,8 @@
     <button  id ="submitFeelings" type="button">Submit</button>
   </div>
 
-  <div>
-    <p style = "color:white;" class = "hidden" id = "sessionOver">The session is now over.</p>
+  <div id = "sessionOver">
+    <p style = "color:white;" class = "hidden" >The session is now over.</p>
     <p style = "color:white;" class = "hidden visQuestion">Did you enjoy the visualizations during the session?</p>
     <button type="button" id = "likeVis" class = "btn visQuestion hidden">Yes</button>
     <button type="button" id = "dislikeVis" class = "btn visQuestion hidden">No</button>

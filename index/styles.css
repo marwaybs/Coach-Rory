@@ -1,7 +1,5 @@
 html{
   background-color: black;
-  opacity:0;
-  -webkit-animation: fadeIn 2s forwards;
 }
 
 @keyframes fadeIn{
@@ -22,35 +20,32 @@ html{
   }
 }
 
+settings{
+  -webkit-animation: fadeIn 2s forwards;
+}
+
 #enterFullScreen{
      font-family: "Arial Bold", Gadget, sans-serif;
      font-style: normal;
      font-size: 15px ! important; //to make fontsize bigger
   }
 
-/*set at appropriate delay when everything is figured out*/
-#sessionOver {
-  -webkit-animation: fadeIn 1s forwards 40s;
-}
+  .fadeIn{
+      -webkit-animation: fadeIn 1s forwards;
+  }
 
-.fadeIn{
-    -webkit-animation: fadeIn 1s forwards;
-}
+  .fadeOut{
+    -webkit-animation: fadeOut 1s forwards;
 
-.fadeOut{
-  -webkit-animation: fadeOut 1s forwards;
-
-}
-
-/*set at appropriate delay when everything is figured out*/
-.visQuestion {
-  -webkit-animation: fadeIn 1s forwards 41s;
-
-}
+  }
 
 /*to hide elements*/
 .hidden{
-  opacity: 0;
+  opacity: 0 ! important;
+}
+
+.notHidden{
+  opacity: 1 ! important;
 }
 
 /*circle for bls*/
@@ -64,13 +59,13 @@ html{
 }
 
 .blsAnimation {
-  animation-name: moveCenterLeft, moveLeftRight, moveLeftCenter, fadeOut;
+  animation-name: fadeIn, moveCenterLeft, moveLeftRight, moveLeftCenter, fadeOut;
   /*animation-duration: 1000ms, 2000ms, 1000ms, 1000ms;
   animation-delay: 1000ms, 2000ms, 6000ms,7000ms;*/
-  animation-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+  animation-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out, ease-in-out;
   /*animation-iteration-count: 1, 2, 1, 1;*/
-  animation-direction: normal, alternate, normal, normal;
-  animation-fill-mode: none, none, none, forwards;
+  animation-direction: normal, normal, alternate, normal, normal;
+  animation-fill-mode: forwards, none, none, none, forwards;
 }
 
 /*animations for bls*/

@@ -1,3 +1,4 @@
+//setting global variables since they need to be referenced by button clicks and within functions
 var currentAudio = 0;
 var audioQueue = [];
 var audioElement = document.createElement('audio');
@@ -29,14 +30,14 @@ $(document).ready(function(){
           $("#settings").removeClass("hidden");
       }
   	});
+
   }
 });
 
 $(document).ready(function(){
     $("#hideBLS").click(function(){
-      $("#bls").toggleClass("hidden, notHidden");
+      $("#bls").toggleClass("hideBLS");
     });
-
 });
 
 function updateAnimation(time) {

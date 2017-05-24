@@ -30,6 +30,10 @@ settings{
      font-size: 15px ! important; //to make fontsize bigger
   }
 
+#sessionOver{
+  opacity: 0;
+}
+
   .fadeIn{
       -webkit-animation: fadeIn 1s forwards;
   }
@@ -56,6 +60,7 @@ settings{
   border-radius: 50%;
   margin: 0 auto;
   margin-top: 40vh;
+  opacity: 0;
 }
 
 .blsAnimation {

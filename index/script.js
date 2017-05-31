@@ -3,6 +3,10 @@ var currentAudio = 0;
 var audioQueue = [];
 var audioElement = document.createElement('audio');
 
+//audio locations:
+var part1segment1 = "audio/Part One/part1segment1.mp3";
+
+
 function getCookie(name) {
   var value = "; " + document.cookie;
   var parts = value.split("; " + name + "=");
@@ -40,7 +44,21 @@ $(document).ready(function(){
     });
 });
 
-function updateAnimation(time) {
+
+function updateSlowAnimation(time){
+  sideToSideIteration = (Math.ceil((time-3)/4));
+  sideToSideTime = 2*sideToSideIteration
+  sideToSideDelay = 2 + sideToSideTime;
+  fadeOutDelay = sideToSideDelay + 2
+  // console.log(time);
+  //Apply class before changing the class
+  iterString = "1, 1, "+sideToSideIteration+", 1, 1"
+  delayString = "0s, 1s, 2s, "+sideToSideDelay+"s, "+fadeOutDelay+"s";
+  // console.log(iterString, delayString);
+  $(".blsAnimation").css({"animation-iteration-count": iterString,"animation-duration": "1s, 1s, 2s, 2s, 1s","animation-delay": delayString});
+}
+
+function updateFastAnimation(time) {
   sideToSideIteration = (Math.ceil((time-3)/4));
   sideToSideTime = 2*sideToSideIteration
   sideToSideDelay = 2 + sideToSideTime;
@@ -95,7 +113,7 @@ $(document).ready(function(){
   //calculating time for first audio
   totalTime = 10; //placeholder time
   $('#bls').addClass('blsAnimation');
-  updateAnimation(10);
+  updateSlowAnimation(10);
 
   audioElement.setAttribute('src', audioQueue[currentAudio]);
   audioElement.play();
@@ -118,7 +136,7 @@ $(document).ready(function(){
     if (currentAudio < audioQueue.length){
       audioElement.setAttribute('src', audioQueue[currentAudio]);
       // $('#bls').removeClass('blsAnimation');
-      updateAnimation(audioElement.duration)
+      updateFastAnimation(audioElement.duration)
       restartAnimation();
       audioElement.play();
     }else {

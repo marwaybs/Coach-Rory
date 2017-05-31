@@ -14,7 +14,7 @@ $(document).ready(function(){
     mode = ($('#mode label.active input').val());
     console.log(mode);
     document.cookie = "mode=" + mode;
-    location.href = "index/session.html";
+    location.href = "index/session.php";
 
   })
 })

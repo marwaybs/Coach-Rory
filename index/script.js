@@ -3,8 +3,48 @@ var currentAudio = 0;
 var audioQueue = [];
 var audioElement = document.createElement('audio');
 
-//audio locations:
-var part1segment1 = "audio/Part One/part1segment1.mp3";
+//increments every time there is a negative semantic feelings
+//resets if there is a positive feelings
+//resets after 2 negative feelings trigger a relaxation session
+var negativeCounter = 0;
+
+//audios - [0] = src, [1] 0 = no bls, 1 = slow, 2 = fast
+
+//Part 1 BLS w/ relaxation
+var part1segment1 = ["audio/Part One/part1segment1.mp3",1];
+
+//part 2a: Fast BLS w/ event processing
+var excerciseTargetQuestion = ["audio/Excercise Mode/exercisetargetquestion1.mp3",1];
+var ratingSegment = ["audio//Part2a/Rating/ratingsegment1.mp3",1];
+var startRapidBLS = ["audio/Part2a/startrapidBLSx.mp3",1];
+var stopBLS = ["audio/Part2a/stopBLSx.mp3",1];
+var goWithThat = ["audio/Part2a/gowiththatx.mp3",0];
+var negativeLoopSegment = ["audio/Part2a/Negativeloop/negloopsegment1.mp3",1]; //played if two negatives
+var  = ["audio/",1];
+var  = ["audio/",1];
+var  = ["audio/",1];
+var  = ["audio/",1];
+var  = ["audio/",1];
+var  = ["audio/",1];
+var  = ["audio/",1];
+var  = ["audio/",1];
+var  = ["audio/",1];
+
+var relaxationIntro = ["audio/",1];
+var part3Initial= ["audio/",1];
+var feet = ["audio/PMR/feet1.mp3",1];
+var lowerleg = ["audio/PMR/lowerleg1.mp3",1];
+var hips = ["audio/PMR/hips1.mp3",1];
+var abdomen = ["audio/PMR/abdomen1.mp3",1];
+var shoulders = ["audio/PMR/shoulders1.mp3",1];
+var arms = ["audio/PMR/arms1.mp3",1];
+var neck = ["audio/PMR/neck1.mp3",1];
+var face = ["audio/PMR/face1.mp3",1];
+var eyes = ["audio/PMR/eyes1.mp3",1];
+var back = ["audio/PMR/back1.mp3",1];
+var  = ["audio/",1];
+var  = ["audio/",1];
+
 
 
 function getCookie(name) {
@@ -127,10 +167,23 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $("#submitFeelings").click(function() {
+    console.log("button pressed");
     // console.log($("#SUD").val())
     $("#afterBLS").removeClass("fadeIn");
     $("#afterBLS").addClass("fadeOut");
     $('#submitFeelings').attr("disabled", true);
+    $.ajax({
+      url: 'getData.php',
+      type: 'post',
+      data: {'action': 'send', 'text': $('#feelingsText').val()},
+      success: function(data, status) {
+        console.log(data);
+      },
+      error: function(xhr, desc, err) {
+        console.log(xhr);
+        console.log("Details: " + desc + "\nError:" + err);
+      }
+    }); // end ajax call
     console.log(currentAudio, audioQueue.length);
     currentAudio++
     if (currentAudio < audioQueue.length){

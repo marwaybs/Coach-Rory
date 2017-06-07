@@ -8,52 +8,52 @@ var audioElement = document.createElement('audio');
 //resets after 2 negative feelings trigger a relaxation session
 var negativeCounter = 0;
 
-//audios - [0] = src, [1] 0 = no bls, 1 = slow, 2 = fast
+//audios - [0] = src, [1] 0 = no bls, 1 = slow, 2 = fast, [2] = semantic analysis
 
 //Part 1 BLS w/ relaxation
-var part1Segment = ["audio/Part One/part1segment1.mp3",1];
+var part1Segment = ["audio/Part One/part1segment1.mp3",1, 0];
 
 //part 2a: Fast BLS w/ event processing
-var excerciseTargetQuestion = ["audio/Excercise Mode/exercisetargetquestion1.mp3",1];
-var ratingSegment = ["audio//Part2a/Rating/ratingsegment1.mp3",1];
-var startRapidBLS = ["audio/Part2a/startrapidBLSx.mp3",1];
-var stopBLS = ["audio/Part2a/stopBLSx.mp3",1];
-var goWithThat = ["audio/Part2a/gowiththatx.mp3",0];
-var negativeLoopSegment = ["audio/Part2a/Negativeloop/negloopsegment1.mp3",1]; //played if two negative
-var resetSegment = ["audio//Part2a/Reset/resetsegmentx.mp3",1]; //EMDR sets end when six cyles done or positive x2 and resets
-var ratingSegment = ["audio/Part2a/Rating/ratingsegmentx.mp3",1]; //voice input of number
+var excerciseTargetQuestion = ["audio/Excercise Mode/exercisetargetquestion1.mp3",1, 0];
+var ratingSegment = ["audio//Part2a/Rating/ratingsegment1.mp3",1, 0];
+var startRapidBLS = ["audio/Part2a/startrapidBLSx.mp3",1, 0];
+var stopBLS = ["audio/Part2a/stopBLSx.mp3",1, 0];
+var goWithThat = ["audio/Part2a/gowiththatx.mp3",0, 0];
+var negativeLoopSegment = ["audio/Part2a/Negativeloop/negloopsegment1.mp3",1, 0]; //played if two negative
+var resetSegment = ["audio//Part2a/Reset/resetsegmentx.mp3",1, 0]; //EMDR sets end when six cyles done or positive x2 and resets
+var ratingSegment = ["audio/Part2a/Rating/ratingsegmentx.mp3",1, 0]; //voice input of number
 //Part 2b - to be sorted later
 
 //Part 3 - used with all types of sessions
-var breathingVis = ["audio/Part 3/Breathing/breathevisx.mp3",1];
-var PMRBreath = ["audio/Part 3/PMR/PMRbreathx.mp3",1];
+var breathingVis = ["audio/Part 3/Breathing/breathevisx.mp3",1, 0];
+var PMRBreath = ["audio/Part 3/PMR/PMRbreathx.mp3",1, 0];
 
 //not sure where relaxationIntro is
-var relaxationIntro = ["audio/",1];
+var relaxationIntro = ["audio/",1, 0];
 
-var part3Initial= ["audio/Part 3/Initial/part3initialsegx.mp3",1];
+var part3Initial= ["audio/Part 3/Initial/part3initialsegx.mp3",1, 0];
 
 //PMR body parts
-var feet = ["audio/PMR/feet1.mp3",1];
-var lowerleg = ["audio/PMR/lowerleg1.mp3",1];
-var hips = ["audio/PMR/hips1.mp3",1];
-var abdomen = ["audio/PMR/abdomen1.mp3",1];
-var shoulders = ["audio/PMR/shoulders1.mp3",1];
-var arms = ["audio/PMR/arms1.mp3",1];
-var neck = ["audio/PMR/neck1.mp3",1];
-var face = ["audio/PMR/face1.mp3",1];
-var eyes = ["audio/PMR/eyes1.mp3",1];
-var back = ["audio/PMR/back1.mp3",1];
+var feet = ["audio/PMR/feet1.mp3",1, 0];
+var lowerleg = ["audio/PMR/lowerleg1.mp3",1, 0];
+var hips = ["audio/PMR/hips1.mp3",1, 0];
+var abdomen = ["audio/PMR/abdomen1.mp3",1, 0];
+var shoulders = ["audio/PMR/shoulders1.mp3",1, 0];
+var arms = ["audio/PMR/arms1.mp3",1, 0];
+var neck = ["audio/PMR/neck1.mp3",1, 0];
+var face = ["audio/PMR/face1.mp3",1, 0];
+var eyes = ["audio/PMR/eyes1.mp3",1, 0];
+var back = ["audio/PMR/back1.mp3",1, 0];
 
-var mentalClearing = ["audio//Part 3/Mental/countx.mp3",1];
-var Visualization = ["audio/Part 3/Visualizations/beachx.mp3",1];
+var mentalClearing = ["audio//Part 3/Mental/countx.mp3",1, 0];
+var Visualization = ["audio/Part 3/Visualizations/beachx.mp3",1, 0];
 
 //suggestions
-var egoSuggestion = ["audio/Part3/Suggestions/Ego/egox.mp3",1];
+var egoSuggestion = ["audio/Part3/Suggestions/Ego/egox.mp3",1, 0];
 
 
 //Part 3 Finish
-var finish = ["audio/Part 3/Finish/finishx.mp3",1];
+var finish = ["audio/Part 3/Finish/finishx.mp3",1, 0];
 
 function getCookie(name) {
   var value = "; " + document.cookie;
@@ -133,40 +133,40 @@ function restartAnimation() {
 $(document).ready(function(){
   switch (getCookie("mode")) {
     case "rel5":
-      audioQueue = [part1Segment[0], part3Initial[0], feet[0], shoulders[0], neck[0], eyes[0], mentalClearing[0], finish[0]];
+      audioQueue = [part1Segment, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
       break;
     case "rel10":
-      audioQueue = [part1Segment[0], part3Initial[0], feet[0], shoulders[0], neck[0], back[0], eyes[0], mentalClearing[0], Visualization[0], finish[0]];
+      audioQueue = [part1Segment, part3Initial, feet, shoulders, neck, back, eyes, mentalClearing, Visualization, finish];
       break;
     case "rel15":
-      audioQueue = [part1Segment[0], part3Initial[0], breathingVis[0], feet[0], lowerleg[0], hips[0], abdomen[0], shoulders[0], arms[0], neck[0], face[0], back[0], eyes[0], mentalClearing[0], finish[0]];
+      audioQueue = [part1Segment, part3Initial, breathingVis, feet, lowerleg, hips, abdomen, shoulders, arms, neck, face, back, eyes, mentalClearing, finish];
       break;
     case "rel30":
-      audioQueue = [part1Segment[0], part3Initial[0], breathingVis[0], feet[0], lowerleg[0], hips[0], abdomen[0], shoulders[0], arms[0], neck[0], face[0], back[0], eyes[0], mentalClearing[0], finish[0]];
+      audioQueue = [part1Segment, part3Initial, breathingVis, feet, lowerleg, hips, abdomen, shoulders, arms, neck, face, back, eyes, mentalClearing, finish];
       break;
     case "exc15":
-      audioQueue = [part1Segment[0], part3Initial[0],];
+      audioQueue = [part1Segment, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
       break;
     case "exc30":
-      audioQueue = ["/Part One/part1segmentx.mp3","/Part 3/Initial/initialsegx.mp3"];
+      audioQueue = [part1Segment, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
       break;
     case "exc60":
-      audioQueue = ["/Part One/part1segmentx.mp3","/Part 3/Initial/initialsegx.mp3"];
+      audioQueue = [part1Segment, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
       break;
     case "exc90":
-      audioQueue = ["/Part One/part1segmentx.mp3","/Part 3/Initial/initialsegx.mp3"];
+      audioQueue = [part1Segment, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
       break;
   }
   //cycles through queue of audio until finsished using an event listener to start the next audio when one finishs
 
-  audioQueue = ['audio/sample.mp3','audio/sample.mp3','audio/sample.mp3']; //placeholder queue
+  // audioQueue = ['audio/sample.mp3','audio/sample.mp3','audio/sample.mp3']; //placeholder queue
 
   //calculating time for first audio
-  totalTime = 10; //placeholder time
+  totalTime = 85; //placeholder time
   $('#bls').addClass('blsAnimation');
-  updateSlowAnimation(10);
+  updateSlowAnimation(totalTime);
 
-  audioElement.setAttribute('src', audioQueue[currentAudio]);
+  audioElement.setAttribute('src', audioQueue[currentAudio][0]);
   audioElement.play();
   audioElement.addEventListener("ended", function() {
     audioElement.setAttribute('src', audioQueue[currentAudio]);
@@ -194,13 +194,14 @@ $(document).ready(function(){
         console.log("second", currentAudio, audioQueue.length);
         if (currentAudio < audioQueue.length){
           console.log("in if");
-          audioElement.setAttribute('src', audioQueue[currentAudio]);
+          audioElement.setAttribute('src', audioQueue[currentAudio][0]);
+          //event listener for metadata for audio to load, else audioElement.length returns NaN
           audioElement.addEventListener('loadedmetadata', function() {
             updateSlowAnimation(audioElement.duration);
             restartAnimation();
             audioElement.play();
           },{
-            once: true
+            once: true //stops the event listener from looping
           });
         }else {
           $("#sessionOver").addClass("fadeIn");

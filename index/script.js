@@ -94,6 +94,7 @@ $(document).ready(function(){
 
 
 function updateSlowAnimation(time){
+  console.log(time);
   sideToSideIteration = (Math.ceil((time-3)/4));
   sideToSideTime = 2*sideToSideIteration
   sideToSideDelay = 2 + sideToSideTime;
@@ -109,7 +110,7 @@ function updateSlowAnimation(time){
 //not currently working for some reason
 function updateFastAnimation(time) {
   sideToSideIteration = (Math.ceil((time-3)/4));
-   sideToSideTime = 2*sideToSideIteration
+  sideToSideTime = 2*sideToSideIteration
   sideToSideDelay = 2 + sideToSideTime;
   fadeOutDelay = sideToSideDelay + 2
   // console.log(time);
@@ -194,12 +195,13 @@ $(document).ready(function(){
         if (currentAudio < audioQueue.length){
           console.log("in if");
           audioElement.setAttribute('src', audioQueue[currentAudio]);
-          // $('#bls').removeClass('blsAnimation');
-          console.log(audioElement.duration);
-          updateSlowAnimation(4);
-          console.log(audioElement.duration);
-          restartAnimation();
-          audioElement.play();
+          audioElement.addEventListener('loadedmetadata', function() {
+            updateSlowAnimation(audioElement.duration);
+            restartAnimation();
+            audioElement.play();
+          },{
+            once: true
+          });
         }else {
           $("#sessionOver").addClass("fadeIn");
 

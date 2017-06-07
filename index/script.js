@@ -189,13 +189,15 @@ $(document).ready(function(){
       success: function(data, status) {
         console.log(data);
         console.log("first", currentAudio, audioQueue.length);
-        currentAudio++
+        currentAudio++;
         console.log("second", currentAudio, audioQueue.length);
         if (currentAudio < audioQueue.length){
           console.log("in if");
           audioElement.setAttribute('src', audioQueue[currentAudio]);
           // $('#bls').removeClass('blsAnimation');
-          updateSlowAnimation(audioElement.duration)
+          console.log(audioElement.duration);
+          updateSlowAnimation(4);
+          console.log(audioElement.duration);
           restartAnimation();
           audioElement.play();
         }else {

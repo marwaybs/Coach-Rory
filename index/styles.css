@@ -33,6 +33,12 @@ settings{
   opacity: 0;
 }
 
+#memoryInput{
+  color: white;
+  opacity: 0;
+}
+
+
 #enterFullScreen{
      font-family: "Arial Bold", Gadget, sans-serif;
      font-style: normal;
@@ -44,14 +50,15 @@ settings{
   color: white;
 }
 
-  .fadeIn{
-      -webkit-animation: fadeIn 1s forwards;
-  }
 
-  .fadeOut{
-    -webkit-animation: fadeOut 1s forwards;
+/*ADD DELAY TO THIS????????*/
+.fadeIn{
+    -webkit-animation: fadeIn 1s forwards;
+}
 
-  }
+.fadeOut{
+  -webkit-animation: fadeOut 1s forwards;
+}
 
 /*circle for bls*/
 .circle {

@@ -3,12 +3,21 @@ var currentAudio = 0;
 var audioQueue = [];
 var audioElement = document.createElement('audio');
 
+//for BLS loop
+var positive = 0;
+var negative = 0;
+
 //increments every time there is a negative semantic feelings
 //resets if there is a positive feelings
 //resets after 2 negative feelings trigger a relaxation session
 var negativeCounter = 0;
 
-//audios - [0] = src, [1] 0 = no bls, 1 = slow, 2 = fast, [2] = semantic analysis
+//******
+//audios - [0] = src, [1] 0 = no bls, 1 = slow, 2 = fast, [2] after audio  0 = none, 1 = semantic analysis, 2 = memory input, 3 = BLS loop
+//******
+var sampleAudio = ["audio/sample.mp3", 2, 2];
+
+
 
 //Part 1 BLS w/ relaxation
 var part1Segment = ["audio/Part One/part1segment1.mp3",1, 0];
@@ -92,10 +101,10 @@ $(document).ready(function(){
     });
 });
 
-
 function updateSlowAnimation(time){
   console.log(time);
-  sideToSideIteration = (Math.ceil((time-3)/4));
+  time = 2 * Math.round(time / 2); //time needs to be even for animation to work correctly
+  sideToSideIteration = (Math.ceil((time-2)/4))*2;
   sideToSideTime = 2*sideToSideIteration
   sideToSideDelay = 2 + sideToSideTime;
   fadeOutDelay = sideToSideDelay + 2
@@ -107,25 +116,28 @@ function updateSlowAnimation(time){
   $(".blsAnimation").css({"animation-iteration-count": iterString,"animation-duration": "1s, 1s, 2s, 2s, 1s","animation-delay": delayString});
 }
 
+
 //not currently working for some reason
 function updateFastAnimation(time) {
-  sideToSideIteration = (Math.ceil((time-3)/4));
-  sideToSideTime = 2*sideToSideIteration
-  sideToSideDelay = 2 + sideToSideTime;
+  console.log(time);
+  time = 2 * Math.round(time / 2); //time needs to be even for animation to work correctly
+  sideToSideIteration = (Math.ceil((time-3)/4))*4;
+  sideToSideTime = sideToSideIteration
+  sideToSideDelay = 1.5 + sideToSideTime;
   fadeOutDelay = sideToSideDelay + 2
   // console.log(time);
   //Apply class before changing the class
   iterString = "1, 1, "+sideToSideIteration+", 1, 1"
-  delayString = "0s, 1s, 2s, "+sideToSideDelay+"s, "+fadeOutDelay+"s";
-  // console.log(iterString, delayString);
-  $(".blsAnimation").css({"animation-iteration-count": iterString,"animation-duration": "1s, 1s, 2s, 2s, 1s","animation-delay": delayString});
+  delayString = "0s, 1s, 1500ms, "+sideToSideDelay+"s, "+fadeOutDelay+"s";
+  console.log(iterString, delayString);
+  $(".blsAnimation").css({"animation-iteration-count": iterString,"animation-duration": "1s, 500ms, 1s, 1s, 1s","animation-delay": delayString});
 }
 
 function restartAnimation() {
   $('#bls').removeClass('blsAnimation');
 
   setTimeout(function(){
-    $('#bls').addClass('blsAnimation')
+    $('#bls').addClass('blsAnimation');
   },1)
 };
 
@@ -145,7 +157,7 @@ $(document).ready(function(){
       audioQueue = [part1Segment, part3Initial, breathingVis, feet, lowerleg, hips, abdomen, shoulders, arms, neck, face, back, eyes, mentalClearing, finish];
       break;
     case "exc15":
-      audioQueue = [part1Segment, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
+      audioQueue = [sampleAudio, part1Segment, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
       break;
     case "exc30":
       audioQueue = [part1Segment, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
@@ -162,20 +174,61 @@ $(document).ready(function(){
   // audioQueue = ['audio/sample.mp3','audio/sample.mp3','audio/sample.mp3']; //placeholder queue
 
   //calculating time for first audio
-  totalTime = 85; //placeholder time
   $('#bls').addClass('blsAnimation');
-  updateSlowAnimation(totalTime);
+  //totalTime = 85;
+  // updateSlowAnimation(totalTime);
+  playAudio();
 
-  audioElement.setAttribute('src', audioQueue[currentAudio][0]);
-  audioElement.play();
   audioElement.addEventListener("ended", function() {
-    audioElement.setAttribute('src', audioQueue[currentAudio]);
-    $("#afterBLS").removeClass("fadeOut");
-    $("#afterBLS").addClass("fadeIn");
-    $('#submitFeelings').attr("disabled", false);
+    if(audioQueue[currentAudio][2] == 1){
+      $("#afterBLS").removeClass("fadeOut");
+      $("#afterBLS").addClass("fadeIn");
+      $('#submitFeelings').attr("disabled", false);
+    }else if (audioQueue[currentAudio][2] == 2){
+      $("#memoryInput").removeClass("fadeOut");
+      $("#memoryInput").addClass("fadeIn");
+      $('#submitMemory').attr("disabled", false);
+    }else{
+      console.log("timer started")
+      setTimeout(function(){
+        playAudio();
+       },
+         4000); //delay for setTimeout
+    }
+    console.log(currentAudio);
+    currentAudio++;
+    console.log(currentAudio);
   });
 });
 
+
+function playAudio(){
+  if (currentAudio < audioQueue.length){
+    audioElement.setAttribute('src', audioQueue[currentAudio][0]);
+    //event listener for metadata for audio to load, else audioElement.length returns NaN
+    audioElement.addEventListener('loadedmetadata', function() {
+      if(audioQueue[currentAudio][1] == 1){
+        updateSlowAnimation(audioElement.duration);
+        restartAnimation();
+      }
+      else if(audioQueue[currentAudio][1] == 2){
+        updateFastAnimation(audioElement.duration);
+        restartAnimation();
+      }
+      else if(audioQueue[currentAudio][1] == 3){
+        BLSLoop();
+      }
+      audioElement.play();
+    },{
+      once: true //stops the event listener from looping
+    });
+  }else {
+    $("#sessionOver").addClass("fadeIn");
+
+  }
+}
+
+//button listener for feelings after bls
 $(document).ready(function(){
   $("#submitFeelings").click(function() {
     console.log("button pressed");
@@ -188,25 +241,7 @@ $(document).ready(function(){
       type: 'post',
       data: {'action': 'send', 'text': $('#feelingsText').val()},
       success: function(data, status) {
-        console.log(data);
-        console.log("first", currentAudio, audioQueue.length);
-        currentAudio++;
-        console.log("second", currentAudio, audioQueue.length);
-        if (currentAudio < audioQueue.length){
-          console.log("in if");
-          audioElement.setAttribute('src', audioQueue[currentAudio][0]);
-          //event listener for metadata for audio to load, else audioElement.length returns NaN
-          audioElement.addEventListener('loadedmetadata', function() {
-            updateSlowAnimation(audioElement.duration);
-            restartAnimation();
-            audioElement.play();
-          },{
-            once: true //stops the event listener from looping
-          });
-        }else {
-          $("#sessionOver").addClass("fadeIn");
-
-        }
+        playAudio();
       },
       error: function(xhr, desc, err) {
         console.log(xhr);
@@ -215,3 +250,38 @@ $(document).ready(function(){
     }); // end ajax call
   })
 })
+
+//button listener for submit memory button for excercise mode
+$(document).ready(function(){
+  $("#submitMemory").click(function() {
+    $("#memoryInput").removeClass("fadeIn");
+    $("#memoryInput").addClass("fadeOut");
+    $('#submitMemory').attr("disabled", true);
+    playAudio();
+  })
+})
+
+function BLSLoop(){
+  var sets = 0;
+  positive = 0;
+  negative = 0;
+
+  while sets < 6{
+    var BLSAudio = document.createElement('audio');
+    BLSTime = getRandomInt(25,60);
+    updateFastAnimation(BLSTime);
+    restartAnimation();
+    setTimeout(function(){
+      //STOPBLS.mp3
+     },
+       (BLSTime*1000));
+     }
+     sets++;
+}
+
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}

@@ -36,6 +36,15 @@
     <button  id ="submitFeelings" type="button" disabled >Submit</button>
   </div>
 
+  <div id = "memoryInput">
+    <p style = "color:white;">Memory Input:</p>
+    <input type="range" id="memory" value="50">
+    <textarea rows="4" cols="50" id = "memoryText">hello</textarea>
+    <button  id ="submitMemory" type="button" disabled >Submit</button>
+  </div>
+
+
+
   <div id = "sessionOver">
     <p class = "" >The session is now over.</p>
     <p class = "visQuestion">Did you enjoy the visualizations during the session?</p>

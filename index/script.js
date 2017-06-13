@@ -6,6 +6,8 @@ var audioElement = document.createElement('audio');
 //for BLS loop
 var positive = 0;
 var negative = 0;
+var BLSsets = 0;
+
 
 //increments every time there is a negative semantic feelings
 //resets if there is a positive feelings
@@ -224,7 +226,6 @@ function playAudio(){
     });
   }else {
     $("#sessionOver").addClass("fadeIn");
-
   }
 }
 
@@ -262,23 +263,19 @@ $(document).ready(function(){
 })
 
 function BLSLoop(){
-  var sets = 0;
-  positive = 0;
-  negative = 0;
-
-  while sets < 6{
+  if (sets < 6 || positive <2){
     var BLSAudio = document.createElement('audio');
+    BLSAudio.setAttribute('src', stopBLS[0] );
     BLSTime = getRandomInt(25,60);
     updateFastAnimation(BLSTime);
     restartAnimation();
     setTimeout(function(){
-      //STOPBLS.mp3
+      BLSAudio.play();
      },
        (BLSTime*1000));
      }
      sets++;
 }
-
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);

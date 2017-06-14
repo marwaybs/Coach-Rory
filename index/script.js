@@ -2,11 +2,13 @@
 var currentAudio = 0;
 var audioQueue = [];
 var audioElement = document.createElement('audio');
+var BLSAudio = document.createElement('audio');
+
 
 //for BLS loop
 var positive = 0;
 var negative = 0;
-var BLSsets = 0;
+var BLSSets = 0;
 
 
 //increments every time there is a negative semantic feelings
@@ -25,11 +27,11 @@ var sampleAudio = ["audio/sample.mp3", 2, 2];
 var part1Segment = ["audio/Part One/part1segment1.mp3",1, 0];
 
 //part 2a: Fast BLS w/ event processing
-var excerciseTargetQuestion = ["audio/Excercise Mode/exercisetargetquestion1.mp3",1, 0];
+var excerciseTargetQuestion = ["audio/Exercise Mode/exercisetargetquestion1.mp3",0, 2];
 var ratingSegment = ["audio//Part2a/Rating/ratingsegment1.mp3",1, 0];
-var startRapidBLS = ["audio/Part2a/startrapidBLSx.mp3",1, 0];
-var stopBLS = ["audio/Part2a/stopBLSx.mp3",1, 0];
-var goWithThat = ["audio/Part2a/gowiththatx.mp3",0, 0];
+var startRapidBLS = ["audio/Part2a/startrapidBLS1.mp3",1, 0];
+var stopBLS = ["audio/Part2a/stopBLS1.mp3",1, 0];
+var goWithThat = ["audio/Part2a/gowiththat1.mp3",0, 0];
 var negativeLoopSegment = ["audio/Part2a/Negativeloop/negloopsegment1.mp3",1, 0]; //played if two negative
 var resetSegment = ["audio//Part2a/Reset/resetsegmentx.mp3",1, 0]; //EMDR sets end when six cyles done or positive x2 and resets
 var ratingSegment = ["audio/Part2a/Rating/ratingsegmentx.mp3",1, 0]; //voice input of number
@@ -159,16 +161,16 @@ $(document).ready(function(){
       audioQueue = [part1Segment, part3Initial, breathingVis, feet, lowerleg, hips, abdomen, shoulders, arms, neck, face, back, eyes, mentalClearing, finish];
       break;
     case "exc15":
-      audioQueue = [sampleAudio, part1Segment, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
+      audioQueue = [part1Segment, excerciseTargetQuestion, part1Segment, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
       break;
     case "exc30":
-      audioQueue = [part1Segment, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
+      audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
       break;
     case "exc60":
-      audioQueue = [part1Segment, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
+      audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
       break;
     case "exc90":
-      audioQueue = [part1Segment, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
+      audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
       break;
   }
   //cycles through queue of audio until finsished using an event listener to start the next audio when one finishs
@@ -182,14 +184,11 @@ $(document).ready(function(){
   playAudio();
 
   audioElement.addEventListener("ended", function() {
+    //Option 1 is only for testing purposes - wisn't accessed through this path
     if(audioQueue[currentAudio][2] == 1){
-      $("#afterBLS").removeClass("fadeOut");
-      $("#afterBLS").addClass("fadeIn");
-      $('#submitFeelings').attr("disabled", false);
+      feelings();
     }else if (audioQueue[currentAudio][2] == 2){
-      $("#memoryInput").removeClass("fadeOut");
-      $("#memoryInput").addClass("fadeIn");
-      $('#submitMemory').attr("disabled", false);
+      memory();
     }else{
       console.log("timer started")
       setTimeout(function(){
@@ -242,7 +241,24 @@ $(document).ready(function(){
       type: 'post',
       data: {'action': 'send', 'text': $('#feelingsText').val()},
       success: function(data, status) {
-        playAudio();
+        dataArray = data.substring(1, data.length-1).split(",");
+        if(dataArray[0] > 0.4){
+          positive++;
+          negative = 0;
+        }else if(dataArray < 0){
+          negative++
+          positive = 0;
+        }else{
+          negative = 0;
+          positive =0;
+        }
+        if (negative >= 2){
+          BLSAudio.setAttribute('src', negativeLoopSegment[0]);
+        }else{
+          BLSAudio.setAttribute('src', goWithThat[0]);
+        }
+        BLSAudio.play();
+        BLSLoop();
       },
       error: function(xhr, desc, err) {
         console.log(xhr);
@@ -258,23 +274,49 @@ $(document).ready(function(){
     $("#memoryInput").removeClass("fadeIn");
     $("#memoryInput").addClass("fadeOut");
     $('#submitMemory').attr("disabled", true);
-    playAudio();
+    BLSAudio.setAttribute('src', startRapidBLS[0] );
+    BLSAudio.addEventListener('loadedmetadata', function() {
+      BLSAudio.play();
+      setTimeout(function(){
+        BLSLoop();
+       },
+         (BLSAudio.duration*1000));
+    },{
+      once: true //stops the event listener from looping
+    });
   })
 })
 
+function memory(){
+  $("#memoryInput").removeClass("fadeOut");
+  $("#memoryInput").addClass("fadeIn");
+  $('#submitMemory').attr("disabled", false);
+}
+
+function feelings(){
+  $("#afterBLS").removeClass("fadeOut");
+  $("#afterBLS").addClass("fadeIn");
+  $('#submitFeelings').attr("disabled", false);
+}
+
 function BLSLoop(){
-  if (sets < 6 || positive <2){
+  console.log("set number #:" + BLSSets);
+  if (BLSSets < 2 || positive < 2){
     var BLSAudio = document.createElement('audio');
-    BLSAudio.setAttribute('src', stopBLS[0] );
+    BLSAudio.setAttribute('src', stopBLS[0]);
     BLSTime = getRandomInt(25,60);
-    updateFastAnimation(BLSTime);
+    updateFastAnimation((BLSTime-2));
     restartAnimation();
     setTimeout(function(){
       BLSAudio.play();
+      BLSSets++;
+      feelings();
      },
        (BLSTime*1000));
      }
-     sets++;
+     else{
+       playAudio();
+     }
 }
 
 function getRandomInt(min, max) {

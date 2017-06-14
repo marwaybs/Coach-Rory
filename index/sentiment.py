@@ -1,5 +1,5 @@
-"""Demonstrates how to make a simple call to the Natural Language API."""
-
+"""Makes a call to the Natural Language API."""
+"""Edited to only return the full sentiment (not each sentence)"""
 import argparse
 
 from google.cloud import language

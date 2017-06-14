@@ -161,7 +161,7 @@ $(document).ready(function(){
       audioQueue = [part1Segment, part3Initial, breathingVis, feet, lowerleg, hips, abdomen, shoulders, arms, neck, face, back, eyes, mentalClearing, finish];
       break;
     case "exc15":
-      audioQueue = [part1Segment, excerciseTargetQuestion, part1Segment, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
+      audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, finish];
       break;
     case "exc30":
       audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
@@ -170,7 +170,7 @@ $(document).ready(function(){
       audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
       break;
     case "exc90":
-      audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
+      audioQueue = [part1Segment, excerciseTargetQuestion,  part3Initial, feet, shoulders, neck, back, eyes, mentalClearing, Visualization, finish];
       break;
   }
   //cycles through queue of audio until finsished using an event listener to start the next audio when one finishs
@@ -305,7 +305,7 @@ function BLSLoop(){
     var BLSAudio = document.createElement('audio');
     BLSAudio.setAttribute('src', stopBLS[0]);
     BLSTime = getRandomInt(25,60);
-    updateFastAnimation((BLSTime-2));
+    updateFastAnimation((BLSTime-4));
     restartAnimation();
     setTimeout(function(){
       BLSAudio.play();

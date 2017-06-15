@@ -138,11 +138,20 @@ function updateFastAnimation(time) {
 }
 
 function restartAnimation() {
-  $('#bls').removeClass('blsAnimation');
+  // $('#bls').removeClass('blsAnimation');
+  // void element.offsetWidth;
+  // $('#bls').addClass('blsAnimation');
 
-  setTimeout(function(){
-    $('#bls').addClass('blsAnimation');
-  },1)
+
+
+ var circle = $('#bls'),
+  newone = circle.clone(true);
+
+ circle.before(newone);
+
+ circle.remove();
+ console.log("animation restart?")
+
 };
 
 //Session set up
@@ -161,7 +170,7 @@ $(document).ready(function(){
       audioQueue = [part1Segment, part3Initial, breathingVis, feet, lowerleg, hips, abdomen, shoulders, arms, neck, face, back, eyes, mentalClearing, finish];
       break;
     case "exc15":
-      audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, finish];
+      audioQueue = [sampleAudio, part1Segment, excerciseTargetQuestion, part3Initial, finish];
       break;
     case "exc30":
       audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];

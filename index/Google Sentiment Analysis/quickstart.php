@@ -23,7 +23,7 @@ require __DIR__ . '/vendor/autoload.php';
 use Google\Cloud\Language\LanguageClient;
 
 
-$text = "I am happy";
+function analyzeSentiment($text){
   # Your Google Cloud Platform project ID
   $projectId = 'coachror-168614';
 
@@ -36,7 +36,8 @@ $text = "I am happy";
   $annotation = $language->analyzeSentiment($text);
   $sentiment = $annotation->sentiment();
 
-  echo 'Text: ' . $text . '
-  Sentiment: ' . $sentiment['score'] . ', ' . $sentiment['magnitude'];
+  // echo 'Text: ' . $text . '
+  // Sentiment: ' . $sentiment['score'] . ', ' . $sentiment['magnitude'];
   # [END language_quickstart]
   return $sentiment;
+}

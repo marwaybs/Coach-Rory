@@ -29,10 +29,10 @@
 
   <div class="circle" id = "bls" ></div>
 
-  <div id = "afterBLS">
+  <div class = "container" id = "afterBLS">
     <p style = "color:white;">When you think about that picture, and the negative belief , what emotions do you feel now?</p>
     <input type="range" id="SUD" value="50">
-    <textarea rows="4" cols="50" id = "feelingsText">hello</textarea>
+    <textarea rows="4" cols="50" id = "feelingsText"></textarea>
     <button  id ="submitFeelings" type="button" disabled >Submit</button>
   </div>
 

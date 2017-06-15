@@ -287,12 +287,14 @@ $(document).ready(function(){
   })
 })
 
+//make memory input appear
 function memory(){
   $("#memoryInput").removeClass("fadeOut");
   $("#memoryInput").addClass("fadeIn");
   $('#submitMemory').attr("disabled", false);
 }
 
+//make feelings input appear
 function feelings(){
   $("#afterBLS").removeClass("fadeOut");
   $("#afterBLS").addClass("fadeIn");

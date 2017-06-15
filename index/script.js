@@ -170,7 +170,7 @@ $(document).ready(function(){
       audioQueue = [part1Segment, part3Initial, breathingVis, feet, lowerleg, hips, abdomen, shoulders, arms, neck, face, back, eyes, mentalClearing, finish];
       break;
     case "exc15":
-      audioQueue = [sampleAudio, part1Segment, excerciseTargetQuestion, part3Initial, finish];
+      audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, finish];
       break;
     case "exc30":
       audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];

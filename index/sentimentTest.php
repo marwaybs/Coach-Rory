@@ -24,8 +24,13 @@
     <button  id ="submitFeelings" type="button" >Submit</button>
   </div>
   <div class="container">
-    <p>sentiments (Scale from -1 to 1 from negative to positive, Magnitude)
+    <p>Sentiments (Scale from -1 to 1 from negative to positive, Magnitude)
     <ol id="sentiments"></ol>
+  </div>
+  <div class = "container">
+    <p>Score of the sentiment ranges between -1.0 (negative) and 1.0 (positive) and corresponds to the overall emotional leaning of the text.</p>
+    <p>Magnitude indicates the overall strength of emotion (both positive and negative) within the given text, between 0.0 and +inf. Unlike score, magnitude is not normalized; each expression of emotion within the text (both positive and negative) contributes to the text's magnitude (so longer text blocks may have greater magnitudes).</p>
+    <p>Currently Coach Rory recognizes a sentiment score as positive if it is greater than 0.4 and negative if it is less than 0.</p>
   </div>
 
 </body>

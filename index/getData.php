@@ -12,6 +12,6 @@ if($_POST['action'] == "send") {
   // echo ($command);
   //$output = (shell_exec($command));
 
-  echo 'Sentiment: ' . $sentiment['score'] . ', Magnitude: ' . $sentiment['magnitude'];
+  echo $sentiment['score'] . ', ' . $sentiment['magnitude'];
 }
 ?>

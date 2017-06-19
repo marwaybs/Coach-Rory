@@ -170,7 +170,7 @@ $(document).ready(function(){
       audioQueue = [part1Segment, part3Initial, breathingVis, feet, lowerleg, hips, abdomen, shoulders, arms, neck, face, back, eyes, mentalClearing, finish];
       break;
     case "exc15":
-      audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, finish];
+      audioQueue = [sampleAudio, excerciseTargetQuestion, part3Initial, finish];
       break;
     case "exc30":
       audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
@@ -250,16 +250,18 @@ $(document).ready(function(){
       type: 'post',
       data: {'action': 'send', 'text': $('#feelingsText').val()},
       success: function(data, status) {
-        dataArray = data.substring(1, data.length-1).split(",");
+        dataArray = data.split(",");
+        console.log(dataArray);
+        console.log(dataArray[0]);
         if(dataArray[0] > 0.4){
           positive++;
           negative = 0;
-        }else if(dataArray < 0){
+        }else if(dataArray[0] < 0){
           negative++
           positive = 0;
         }else{
           negative = 0;
-          positive =0;
+          positive = 0;
         }
         if (negative >= 2){
           BLSAudio.setAttribute('src', negativeLoopSegment[0]);

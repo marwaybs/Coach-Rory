@@ -62,7 +62,7 @@ function textToSpeech($fileName){
 
   // echo 'Transcription: ' . $results[0]['transcript'];
   # [END speech_quickstart]
-  var_dump($results);
-  echo $results;
+  // var_dump($results);
+  // echo $results;
   return $results[0]['transcript'];
 }

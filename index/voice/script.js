@@ -110,9 +110,10 @@ function makeXMLHttpRequest(url, data, callback) {
     var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
-            callback(
-              console.log("file sent!")
-            );
+            console.log(request.responseText)
+            var newText = document.createElement('li');
+            newText.appendChild(document.createTextNode(request.responseText));
+            text.appendChild(newText);
         }
     };
     request.open('POST', url);

@@ -19,7 +19,7 @@ var negativeCounter = 0;
 //******
 //audios - [0] = src, [1] 0 = no bls, 1 = slow, 2 = fast, [2] after audio  0 = none, 1 = semantic analysis, 2 = memory input, 3 = BLS loop
 //******
-var sampleAudio = ["audio/sample.mp3", 1, 3];
+var sampleAudio = ["audio/sample.mp3", 1, 1];
 
 
 
@@ -117,7 +117,7 @@ $(document).ready(function(){
 });
 
 function updateSlowAnimation(time){
-  console.log(time);
+  // console.log(time);
   time = 2 * Math.round(time / 2); //time needs to be even for animation to work correctly
   sideToSideIteration = (Math.ceil((time-2)/4))*2;
   sideToSideTime = 2*sideToSideIteration
@@ -134,7 +134,7 @@ function updateSlowAnimation(time){
 
 //not currently working for some reason
 function updateFastAnimation(time) {
-  console.log(time);
+  // console.log(time);
   time = 2 * Math.round(time / 2); //time needs to be even for animation to work correctly
   sideToSideIteration = (Math.ceil((time-3)/4))*4;
   sideToSideTime = sideToSideIteration
@@ -161,7 +161,7 @@ function restartAnimation() {
  circle.before(newone);
 
  circle.remove();
- console.log("animation restart?")
+ // console.log("animation restart?")
 
 };
 
@@ -193,7 +193,8 @@ $(document).ready(function(){
       audioQueue = [part1Segment, excerciseTargetQuestion,  part3Initial, feet, shoulders, neck, back, eyes, mentalClearing, Visualization, finish];
       break;
     case "testing":
-      audioQueue = [sampleAudio];
+      audioQueue = [];
+      BLSLoop();
       break;
   }
   //cycles through queue of audio until finsished using an event listener to start the next audio when one finishs
@@ -213,15 +214,13 @@ $(document).ready(function(){
     }else if (audioQueue[currentAudio][2] == 2){
       memory();
     }else{
-      console.log("timer started")
+      // console.log("timer started")
       setTimeout(function(){
         playAudio();
        },
          4000); //delay for setTimeout
     }
-    console.log(currentAudio);
     currentAudio++;
-    console.log(currentAudio);
   });
 });
 
@@ -254,7 +253,6 @@ function playAudio(){
 //button listener for feelings after bls
 $(document).ready(function(){
   $("#submitFeelings").click(function() {
-    console.log("button pressed");
     // console.log($("#SUD").val())
     $("#afterBLS").removeClass("fadeIn");
     $("#afterBLS").addClass("fadeOut");
@@ -268,7 +266,6 @@ $(document).ready(function(){
       success: function(data, status) {
         dataArray = data.split(",");
         console.log(dataArray);
-        console.log(dataArray[0]);
         if(dataArray[0] > 0.4){
           positive++;
           negative = 0;
@@ -334,14 +331,18 @@ function BLSLoop(){
   if (BLSSets < 2 || positive < 2){
     var BLSAudio = document.createElement('audio');
     BLSAudio.setAttribute('src', stopBLS[0]);
-    BLSTime = getRandomInt(25,60);
+    console.log("which audio");
+    BLSTime = getRandomInt(5,10);
     updateFastAnimation((BLSTime-4));
     restartAnimation();
     setTimeout(function(){
       BLSAudio.play();
-      BLSSets++;
-      feelings();
-      startRecognition(); //start recording audio
+      setTimeout(function(){
+        BLSSets++;
+        feelings();
+        startRecognition(); //start recording audio
+      },
+      (4700));
      },
        (BLSTime*1000));
      }

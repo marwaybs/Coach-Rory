@@ -36,6 +36,7 @@
     <input type="range" id="SUD" value="50">
     <textarea rows="4" cols="50" id = "feelingsText"></textarea>
     <button  id ="submitFeelings" type="button" disabled >Submit</button>
+    <img id="microphone" src="mic.gif" alt="Start"></button>
   </div>
 
   <div id = "memoryInput">

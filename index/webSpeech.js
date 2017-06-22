@@ -11,6 +11,7 @@ recognition.maxAlternatives = 1; //alternatives for text, 1 is default
 function startRecognition(){
   recognition.start();
   final_transcript = '';
+  microphone.src = 'mic-animate.gif';
   console.log('Ready for recognition');
 }
 
@@ -41,4 +42,5 @@ recognition.onresult = function(event) {
 function endRecognition(){
   console.log(final_transcript);
   recognition.stop();
+  microphone.src = 'mic.gif';
 }

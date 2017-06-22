@@ -19,7 +19,7 @@ var negativeCounter = 0;
 //******
 //audios - [0] = src, [1] 0 = no bls, 1 = slow, 2 = fast, [2] after audio  0 = none, 1 = semantic analysis, 2 = memory input, 3 = BLS loop
 //******
-var sampleAudio = ["audio/sample.mp3", 2, 2];
+var sampleAudio = ["audio/sample.mp3", 1, 3];
 
 
 
@@ -260,11 +260,11 @@ $(document).ready(function(){
     $("#afterBLS").addClass("fadeOut");
     $('#submitFeelings').attr("disabled", true);
     endRecognition();
-    feelings = $('#feelingsText').val() + " " + final_transcript;
+    feelingsText = $('#feelingsText').val() + " " + final_transcript;
     $.ajax({
       url: 'getData.php',
       type: 'post',
-      data: {'action': 'send', 'text': feelings},
+      data: {'action': 'send', 'text': feelingsText},
       success: function(data, status) {
         dataArray = data.split(",");
         console.log(dataArray);
@@ -323,6 +323,7 @@ function memory(){
 
 //make feelings input appear
 function feelings(){
+  console.log("feelings");
   $("#afterBLS").removeClass("fadeOut");
   $("#afterBLS").addClass("fadeIn");
   $('#submitFeelings').attr("disabled", false);

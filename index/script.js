@@ -144,7 +144,7 @@ function updateFastAnimation(time) {
   //Apply class before changing the class
   iterString = "1, 1, "+sideToSideIteration+", 1, 1"
   delayString = "0s, 1s, 1500ms, "+sideToSideDelay+"s, "+fadeOutDelay+"s";
-  console.log(iterString, delayString);
+  // console.log(iterString, delayString);
   $(".blsAnimation").css({"animation-iteration-count": iterString,"animation-duration": "1s, 500ms, 1s, 1s, 1s","animation-delay": delayString});
 }
 
@@ -285,7 +285,7 @@ $(document).ready(function(){
         BLSLoop();
       },
       error: function(xhr, desc, err) {
-        console.log(xhr);
+        // console.log(xhr);
         console.log("Details: " + desc + "\nError:" + err);
       }
     }); // end ajax call
@@ -320,18 +320,16 @@ function memory(){
 
 //make feelings input appear
 function feelings(){
-  console.log("feelings");
   $("#afterBLS").removeClass("fadeOut");
   $("#afterBLS").addClass("fadeIn");
   $('#submitFeelings').attr("disabled", false);
 }
 
 function BLSLoop(){
-  console.log("set number #:" + BLSSets);
+  // console.log("set number #:" + BLSSets);
   if (BLSSets < 2 || positive < 2){
     var BLSAudio = document.createElement('audio');
     BLSAudio.setAttribute('src', stopBLS[0]);
-    console.log("which audio");
     BLSTime = getRandomInt(5,10);
     updateFastAnimation((BLSTime-4));
     restartAnimation();

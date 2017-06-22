@@ -117,3 +117,49 @@ settings{
     transform: translateX(0vw);
   }
 }
+
+/*styles for webspeech*/
+* {
+  font-family: Verdana, Arial, sans-serif;
+}
+
+.center {
+  padding: 10px;
+  text-align: center;
+}
+.final {
+  color: black;
+  padding-right: 3px;
+}
+.interim {
+  color: gray;
+}
+
+.right {
+  float: right;
+}
+.sidebyside {
+  display: inline-block;
+  width: 45%;
+  min-height: 40px;
+  text-align: left;
+  vertical-align: top;
+}
+#headline {
+  font-size: 40px;
+  font-weight: 300;
+}
+
+#results {
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: left;
+  min-height: 150px;
+}
+#start_button {
+  border: 0;
+  background-color:transparent;
+  padding: 0;
+}

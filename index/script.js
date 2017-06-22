@@ -99,6 +99,17 @@ $(document).ready(function(){
   }
 });
 
+// //button listener for skip audio button
+// $(document).ready(function(){
+//   $("#skipAudio").click(function() {
+//     audioElement.pause();
+//     audioElement.currentTime = audioElement.duration-1;
+//     audioElement.play();
+//   })
+// })
+
+
+
 $(document).ready(function(){
     $("#hideBLS").click(function(){
       $("#bls").toggleClass("hideBLS");
@@ -170,7 +181,7 @@ $(document).ready(function(){
       audioQueue = [part1Segment, part3Initial, breathingVis, feet, lowerleg, hips, abdomen, shoulders, arms, neck, face, back, eyes, mentalClearing, finish];
       break;
     case "exc15":
-      audioQueue = [sampleAudio, excerciseTargetQuestion, part3Initial, finish];
+      audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, finish];
       break;
     case "exc30":
       audioQueue = [part1Segment, excerciseTargetQuestion, part3Initial, feet, shoulders, neck, eyes, mentalClearing, finish];
@@ -180,6 +191,9 @@ $(document).ready(function(){
       break;
     case "exc90":
       audioQueue = [part1Segment, excerciseTargetQuestion,  part3Initial, feet, shoulders, neck, back, eyes, mentalClearing, Visualization, finish];
+      break;
+    case "testing":
+      audioQueue = [sampleAudio];
       break;
   }
   //cycles through queue of audio until finsished using an event listener to start the next audio when one finishs
@@ -193,7 +207,7 @@ $(document).ready(function(){
   playAudio();
 
   audioElement.addEventListener("ended", function() {
-    //Option 1 is only for testing purposes - wisn't accessed through this path
+    //Option 1 is only for testing purposes - isn't accessed through this path
     if(audioQueue[currentAudio][2] == 1){
       feelings();
     }else if (audioQueue[currentAudio][2] == 2){
@@ -245,10 +259,12 @@ $(document).ready(function(){
     $("#afterBLS").removeClass("fadeIn");
     $("#afterBLS").addClass("fadeOut");
     $('#submitFeelings').attr("disabled", true);
+    endRecognition();
+    feelings = $('#feelingsText').val() + " " + final_transcript;
     $.ajax({
       url: 'getData.php',
       type: 'post',
-      data: {'action': 'send', 'text': $('#feelingsText').val()},
+      data: {'action': 'send', 'text': feelings},
       success: function(data, status) {
         dataArray = data.split(",");
         console.log(dataArray);
@@ -324,6 +340,7 @@ function BLSLoop(){
       BLSAudio.play();
       BLSSets++;
       feelings();
+      startRecognition(); //start recording audio
      },
        (BLSTime*1000));
      }

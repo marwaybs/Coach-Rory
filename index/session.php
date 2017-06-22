@@ -15,6 +15,7 @@
     <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
     <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script> -->
     <script type='text/javascript' src="script.js"></script>
+    <script type='text/javascript' src="webSpeech.js"></script>
     <script type ='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/3.2.0/screenfull.min.js"></script>
 
 
@@ -24,6 +25,7 @@
   <div id = settings>
     <button type="button" id = "enterFullScreen" >Enter Full Screen</button>
     <button type="button" id = "hideBLS" >Hide Animation</button>
+    <!-- <button type="button" id = "skipAudio" >Skip Audio</button> -->
 
   </div>
 

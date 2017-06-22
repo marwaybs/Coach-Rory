@@ -14,14 +14,6 @@ $(document).ready(function(){
     mode = ($('#mode label.active input').val());
     console.log(mode);
     document.cookie = "mode=" + mode;
-
-    fbq('track', 'Purchase', {
-      content_ids: [mode],
-      value: 10.00,
-      currency: 'CAD'
-    });
-
-
     location.href = "index/session.php";
 
   })

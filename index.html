@@ -16,36 +16,16 @@
     <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
     <script type='text/javascript' src="script.js"></script>
 
-    <!-- Facebook Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1927582117455994'); // Insert your pixel ID here.
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1927582117455994&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- DO NOT MODIFY -->
-    <!-- End Facebook Pixel Code -->
-
 
 </head>
 <body>
 
-  <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NVXV2B7"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
 <div class = "jumbotron" style="background:#2C8E9B s">
   <h3>Coach Rory</h3>
 
-    <p>Relaxation Mode</p>
     <div class="btn-group" id = "mode" data-toggle="buttons">
+      <p>Relaxation Mode</p>
       <label class="btn btn-default active">
         <input type="radio" class="toggle" value='rel5' />5 Minutes
       </label>
@@ -72,9 +52,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <label class="btn btn-default">
          <input type="radio" class="toggle" value='exc90' />90 Minutes
       </label>
-    <p class = "spaceAbove">Creative Mode</p>
-    <div class = "container">
-      <button type="button" id = "startSession" class = "btn btn-default">Start Session</button>
+      <p class = "spaceAbove">Testing Mode</p>
+        <label class="btn btn-default">
+          <input type="radio" class="toggle" value='testing' />Testing
+        </label>
+      <button type="button" id = "startSession" class = "btn btn-default btn-block">Start Session</button>
     </div>
   </div>
   </body>

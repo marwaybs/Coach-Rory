@@ -85,6 +85,7 @@ $(document).ready(function(){
  });
 });
 
+//hide and unhide buttons when in fullscreen
 $(document).ready(function(){
   if (screenfull.enabled) {
   	screenfull.onchange(() => {
@@ -99,17 +100,9 @@ $(document).ready(function(){
   }
 });
 
-// //button listener for skip audio button
-// $(document).ready(function(){
-//   $("#skipAudio").click(function() {
-//     audioElement.pause();
-//     audioElement.currentTime = audioElement.duration-1;
-//     audioElement.play();
-//   })
-// })
 
 
-
+//button to hide BLS animation
 $(document).ready(function(){
     $("#hideBLS").click(function(){
       $("#bls").toggleClass("hideBLS");
@@ -132,7 +125,6 @@ function updateSlowAnimation(time){
 }
 
 
-//not currently working for some reason
 function updateFastAnimation(time) {
   // console.log(time);
   time = 2 * Math.round(time / 2); //time needs to be even for animation to work correctly
@@ -148,21 +140,12 @@ function updateFastAnimation(time) {
   $(".blsAnimation").css({"animation-iteration-count": iterString,"animation-duration": "1s, 500ms, 1s, 1s, 1s","animation-delay": delayString});
 }
 
+
 function restartAnimation() {
-  // $('#bls').removeClass('blsAnimation');
-  // void element.offsetWidth;
-  // $('#bls').addClass('blsAnimation');
-
-
-
- var circle = $('#bls'),
+  var circle = $('#bls'),
   newone = circle.clone(true);
-
- circle.before(newone);
-
- circle.remove();
- // console.log("animation restart?")
-
+  circle.before(newone);
+  circle.remove();
 };
 
 //Session set up
@@ -266,6 +249,7 @@ $(document).ready(function(){
       success: function(data, status) {
         dataArray = data.split(",");
         console.log(dataArray);
+        //updates consecutive positive and negative counts
         if(dataArray[0] > 0.4){
           positive++;
           negative = 0;
@@ -276,6 +260,7 @@ $(document).ready(function(){
           negative = 0;
           positive = 0;
         }
+        //if positive or negative are greater than 2:
         if (negative >= 2){
           BLSAudio.setAttribute('src', negativeLoopSegment[0]);
         }else{
@@ -349,6 +334,7 @@ function BLSLoop(){
      }
 }
 
+//for BLS loop time generation
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);

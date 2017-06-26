@@ -5,7 +5,7 @@ var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEv
 
 var recognition = new SpeechRecognition();
 recognition.continuous = true; //true = won
-recognition.interimResults = false;
+recognition.interimResults = false; //outputs interim results before giving final results
 recognition.maxAlternatives = 1; //alternatives for text, 1 is default
 
 function startRecognition(){
